@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2021 at 03:46 PM
+-- Generation Time: Apr 13, 2021 at 04:08 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -33,6 +33,14 @@ CREATE TABLE `category` (
   `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`ID`, `name`, `description`) VALUES
+(1, 'electronique', 'PC, television, telephone...'),
+(2, 'jeux videos', 'PS4,xbox one,steam...');
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +54,14 @@ CREATE TABLE `orders` (
   `Shipping_Address` varchar(255) NOT NULL,
   `Shipping_Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`ID`, `ProductID`, `userID`, `Shipping_Address`, `Shipping_Date`) VALUES
+(1, 1, 2, '118, Rue Lieutenent Mahroud Mohamed, Grand Casablanca', '2021-05-20'),
+(2, 2, 2, '51, Rue AL KHOUZAM Beauséjour, Grand Casablanca', '2021-04-13');
 
 -- --------------------------------------------------------
 
@@ -62,6 +78,14 @@ CREATE TABLE `product` (
   `PicturePath` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`ID`, `name`, `description`, `categoryID`, `UnitsinStock`, `PicturePath`) VALUES
+(1, 'DELL Vostro 5471', 'Dell Vostro 5471 est un ordinateur portable Windows 10 Home avec un écran de 14,00 pouces qui a une résolution de 1920 x 1080 pixels. Il est alimenté par un processeur Core i5 et il est livré avec 8 Go de RAM. Les graphiques sont alimentés par AMD Radeon ', 1, 50, ''),
+(2, 'GTA V', 'Grand Theft Auto V est un jeu d\'action-aventure joué à la troisième personne ou à la première personne. Les joueurs accomplissent des missions - des scénarios linéaires avec des objectifs fixés - pour progresser dans l\'histoire. En dehors des missions, le', 2, 100, '');
+
 -- --------------------------------------------------------
 
 --
@@ -74,6 +98,14 @@ CREATE TABLE `user` (
   `password` varchar(20) NOT NULL,
   `role` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`ID`, `username`, `password`, `role`) VALUES
+(1, 'admin', 'qwerty', 'admin'),
+(2, 'client', 'qwerty', 'client');
 
 --
 -- Indexes for dumped tables

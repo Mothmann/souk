@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Products</title>
+</head>
+<body>
+<div class="table-data">
+    <h2>All Products</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>description</th>
+            <th>categoryID</th>
+            <th>UnitsinStock</th>
+        </tr>
+
+        <%
+        if(product.length!==0){
+            var i=1;
+        product.forEach(function(data){
+        %>
+        <tr>
+            <td><%=data.ID%></td>
+            <td><%=data.name%></td>
+            <td><%=data.description%></td>
+            <td><%=data.categoryID%></td>
+            <td><%=data.UnitsinStock%></td>
+        </tr>
+        <%  i++; }) %>
+        <% }
+        else{
+        %>
+            <tr>
+                <td>No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+</div>
+</body>
+</html>

@@ -1,26 +1,25 @@
-const sequelize = require('sequelize');
-const mysql = require("mysql");
-const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'qwerty',
-    database: 'database'
-});
-
-const user = con.define('category',{
-    ID: {
-        type: sequelize.UUID,
-        defaultValue: sequelize.UUIDV4
-    },
-    username: {
-        type: sequelize.STRING,
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class User extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
-    ,
-    password: {
-        type: sequelize.STRING,
-    },
-    role: {
-        type: sequelize.STRING,
-    }
-})
-module.exports = user;
+  };
+  User.init({
+    username: DataTypes.STRING,
+    password: DataTypes.STRING,
+    role: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'User',
+  });
+  return User;
+};

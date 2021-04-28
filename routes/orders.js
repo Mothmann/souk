@@ -1,12 +1,12 @@
 var express = require('express');
 const mysql = require("mysql");
 const jwt = require('jsonwebtoken');
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "database"
-})
+const con = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'qwerty',
+    database: 'database'
+});
 con.connect();
 var router = express.Router();
 

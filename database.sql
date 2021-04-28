@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 13, 2021 at 04:08 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.16
+-- Host: localhost:3307
+-- Generation Time: Apr 28, 2021 at 12:20 PM
+-- Server version: 8.0.23
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `category` (
-  `ID` int(11) NOT NULL,
+  `ID` int NOT NULL,
   `name` varchar(20) NOT NULL,
   `description` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `category`
@@ -48,12 +48,12 @@ INSERT INTO `category` (`ID`, `name`, `description`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `ID` int(11) NOT NULL,
-  `ProductID` int(20) NOT NULL,
-  `userID` int(20) NOT NULL,
+  `ID` int NOT NULL,
+  `ProductID` int NOT NULL,
+  `userID` int NOT NULL,
   `Shipping_Address` varchar(255) NOT NULL,
   `Shipping_Date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `orders`
@@ -70,21 +70,22 @@ INSERT INTO `orders` (`ID`, `ProductID`, `userID`, `Shipping_Address`, `Shipping
 --
 
 CREATE TABLE `product` (
-  `ID` int(11) NOT NULL,
+  `ID` int NOT NULL,
   `name` varchar(20) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `categoryID` int(20) NOT NULL,
-  `UnitsinStock` int(5) NOT NULL,
+  `price` int NOT NULL,
+  `categoryID` int NOT NULL,
+  `UnitsinStock` int NOT NULL,
   `PicturePath` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`ID`, `name`, `description`, `categoryID`, `UnitsinStock`, `PicturePath`) VALUES
-(1, 'DELL Vostro 5471', 'Dell Vostro 5471 est un ordinateur portable Windows 10 Home avec un écran de 14,00 pouces qui a une résolution de 1920 x 1080 pixels. Il est alimenté par un processeur Core i5 et il est livré avec 8 Go de RAM. Les graphiques sont alimentés par AMD Radeon ', 1, 50, ''),
-(2, 'GTA V', 'Grand Theft Auto V est un jeu d\'action-aventure joué à la troisième personne ou à la première personne. Les joueurs accomplissent des missions - des scénarios linéaires avec des objectifs fixés - pour progresser dans l\'histoire. En dehors des missions, le', 2, 100, '');
+INSERT INTO `product` (`ID`, `name`, `description`, `price`, `categoryID`, `UnitsinStock`, `PicturePath`) VALUES
+(1, 'DELL Vostro 5471', 'Dell Vostro 5471 est un ordinateur portable Windows 10 Home avec un écran de 14,00 pouces qui a une résolution de 1920 x 1080 pixels. Il est alimenté par un processeur Core i5 et il est livré avec 8 Go de RAM. Les graphiques sont alimentés par AMD Radeon ', 0, 1, 50, ''),
+(2, 'GTA V', 'Grand Theft Auto V est un jeu d\'action-aventure joué à la troisième personne ou à la première personne. Les joueurs accomplissent des missions - des scénarios linéaires avec des objectifs fixés - pour progresser dans l\'histoire. En dehors des missions, le', 0, 2, 100, '');
 
 -- --------------------------------------------------------
 
@@ -93,11 +94,11 @@ INSERT INTO `product` (`ID`, `name`, `description`, `categoryID`, `UnitsinStock`
 --
 
 CREATE TABLE `user` (
-  `ID` int(11) NOT NULL,
+  `ID` int NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `role` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user`

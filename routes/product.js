@@ -1,20 +1,19 @@
-var express = require('express');
+const express = require('express');
 const mysql = require("mysql");
 const jwt = require('jsonwebtoken');
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "database"
-})
+const con = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'qwerty',
+    database: 'database'
+});
 con.connect();
-var router = express.Router();
+const router = express.Router();
 
 async function query(req, res){
     await con.query("SELECT * FROM product", (err, rows, fields)=> {
         res.render('read', { title: 'product List', product: rows});
     });
-
 }
 
 function token(req, res) {
@@ -54,5 +53,5 @@ router.post('/read', verifytoken, (req, res) => {
 
 
 router.post('/login', token);
-//router.get('/read/all', query)
+router.get('/read/all', query)
 module.exports = router;

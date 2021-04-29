@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model category {
+  ID          Int       @id
+  name        String    @db.VarChar(20)
+  description String    @db.VarChar(255)
+  products    CategoriesOnProducts[]
+}
+
+model orders {
+  ID               Int      @id
+  Shipping_Address String   @db.VarChar(255)
+  Shipping_Date    DateTime @db.Date
+  product          product  @relation(fields: [ProductID], references: [ID])
+  ProductID        Int
+  user             user?    @relation(fields: [userID], references: [ID])
+  userID           Int
+
+  @@index([ProductID], name: "ProductID")
+  @@index([userID], name: "userID")
+}
+
+model product {
+  ID           Int        @id
+  name         String     @db.VarChar(20)
+  description  String     @db.VarChar(255)
+  price        Int      
+  UnitsinStock Int
+  PicturePath  String     @db.VarChar(255)
+  categories   CategoriesOnProducts[]
+  orders       orders[]
+}
+model CategoriesOnProducts {
+  product     product     @relation(fields: [productID], references: [ID])
+  productID   Int       // relation scalar field (used in the `@relation` attribute above)
+  category    category @relation(fields: [categoryID], references: [ID])
+  categoryID  Int      // relation scalar field (used in the `@relation` attribute above)
+    @@id([productID, categoryID])
+
+}
+
+model user {
+  ID       Int      @id
+  username String   @db.VarChar(20)
+  password String   @db.VarChar(20)
+  role     String   @db.VarChar(10)
+  orders   orders[]
+}

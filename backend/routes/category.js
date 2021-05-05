@@ -43,7 +43,7 @@ router.get('/read', async (req, res) => {
     const category = await prisma.category.findMany()
     res.json(category)
   })
-router.post(`/create`, async (req, res) => {
+router.post('/create', async (req, res) => {
     const { ID, name, description } = req.body
     const result = await prisma.category.create({
       data: {
@@ -52,6 +52,7 @@ router.post(`/create`, async (req, res) => {
         description,
       },
     })
+    console.log(result);
     res.json(result)
   })  
   router.put('/update/:id', async (req, res) => {

@@ -59,8 +59,9 @@ router.post('/create', async (req, res) => {
     const { id } = req.params
     const category = await prisma.category.update({
       where: { ID: Number(id) },
-      data: {name: 'idk'},
-    })
+      data:{ name: req.body.name,
+       description: req.body.description,}
+          })
     res.json(category)
   })
   router.delete(`/delete/:id`, async (req, res) => {

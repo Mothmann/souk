@@ -2,13 +2,11 @@
   <div>
       <div>
           <ul>
-            <li v-for="category in fetchedCategories"
-              :key="category.categoryId"
-              >
-              {{category.categoryId}}
-              {{category.categoryDescription}}
-              {{category.categoryName}}
-            </li>
+            <category-item v-for="category in fetchedCategories" 
+            :key="category.categoryId" 
+            :categoryId="category.categoryId"
+            :categoryName="category.categoryName"
+            :categoryDescription="category.categoryDescription" />
           </ul>
       </div>
       <form @submit.prevent="addCategory">
@@ -19,12 +17,17 @@
         <label for="categoryId">Description</label>
         <input type="text" v-model="categoryDescription" />
         <button type="submit">Add category</button>
-      </form>   
+      </form>     
+    
   </div>
 </template>
 
 <script>
+import CategoryItem from './CategoryItem.vue';
 export default {
+    components: {
+        CategoryItem,
+    },
     data() {
         return {
             categoryId: null,
@@ -47,11 +50,12 @@ export default {
                 categoryName: this.categoryName,
                 categoryDescription: this.categoryDescription,
             });
-            this.fetchCategories();
+            location.reload();
         },
         fetchCategories(){
             this.$store.dispatch('category/fetchCategories');
-        }
+        },
+        
     }
 
 }

@@ -1,12 +1,12 @@
 import {createRouter, createWebHistory} from 'vue-router';
 
-import AddCategory from './components/AddCategory.vue';
+import Category from './components/Category.vue';
 
 
 const router = createRouter({
     history: createWebHistory(),
     routes:[
-        {path: '/category', component: AddCategory},
+        {path: '/category', component: Category},
     ]
 });
 

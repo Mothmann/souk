@@ -43,8 +43,7 @@ CREATE TABLE `CategoriesOnProducts` (
 CREATE TABLE `user` (
     `ID` INTEGER NOT NULL,
     `username` VARCHAR(20) NOT NULL,
-    `password` VARCHAR(20) NOT NULL,
-    `role` VARCHAR(10) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
 
     PRIMARY KEY (`ID`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

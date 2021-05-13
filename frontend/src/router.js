@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router';
 
-import Category from './components/Category.vue';
+import Category from './components/Category/Category.vue';
 
 
 const router = createRouter({

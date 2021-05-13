@@ -39,9 +39,9 @@ model product {
 }
 model CategoriesOnProducts {
   product     product     @relation(fields: [productID], references: [ID])
-  productID   Int       // relation scalar field (used in the `@relation` attribute above)
+  productID   Int       
   category    category @relation(fields: [categoryID], references: [ID])
-  categoryID  Int      // relation scalar field (used in the `@relation` attribute above)
+  categoryID  Int
     @@id([productID, categoryID])
 
 }
@@ -49,7 +49,6 @@ model CategoriesOnProducts {
 model user {
   ID       Int      @id
   username String   @db.VarChar(20)
-  password String   @db.VarChar(20)
-  role     String   @db.VarChar(10)
+  password String   @db.VarChar(255)
   orders   orders[]
 }

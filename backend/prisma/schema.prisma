@@ -47,7 +47,7 @@ model CategoriesOnProducts {
 }
 
 model user {
-  ID       Int      @id
+  ID       Int      @id @default(autoincrement())
   username String   @db.VarChar(20)
   password String   @db.VarChar(255)
   orders   orders[]

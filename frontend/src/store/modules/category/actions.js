@@ -79,6 +79,5 @@ export default {
         const index = context.state.tweets.findIndex(category => category.id === categoryId);
         context.commit('deleteCategory',index);
     },
-    
 }
   

@@ -4,16 +4,6 @@ const jwt = require('jsonwebtoken');
 
 const prisma = new PrismaClient();
 
-// async function signUp(req, res){
-//     const { ID, username, password } = req.body
-//     const result = await prisma.user.create({
-//        data: {
-//          ID,
-//          username,
-//          password,
-//        },
-//      })
-//      res.json(result)
 async function signUp(req, res){
     prisma.user.findFirst({where: {username:req.body.username}}).then(result => {
         if (result){
@@ -23,10 +13,9 @@ async function signUp(req, res){
         } else {
             bcryptjs.genSalt(10, function(error, salt){
                 bcryptjs.hash(req.body.password, salt, async function(error ,hash){
-                  const { ID, username } = req.body
+                  const { username } = req.body
                     const createUser = await prisma.user.create({
                        data: {
-                           ID,
                            username,
                            password: hash
                        },

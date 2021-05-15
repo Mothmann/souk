@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 async function readCategory(req, res){
     const category = await prisma.category.findMany()
-    res.json(category)
+    res.json(category);
 }
 async function createCategory(req, res){
     const { ID, name, description } = req.body
@@ -15,7 +15,7 @@ async function createCategory(req, res){
       },
     })
     console.log(result);
-    res.json(result)
+    res.json(result);
 }
 async function updateCategory(req, res){
     const { id } = req.params
@@ -24,7 +24,7 @@ async function updateCategory(req, res){
       data:{ name: req.body.name,
        description: req.body.description,}
           })
-    res.json(category)
+    res.json(category);
 }
 async function deleteCategory(req, res){
     const { id } = req.params
@@ -33,7 +33,7 @@ async function deleteCategory(req, res){
         ID: Number(id),
       },
     })
-    res.json(category)
+    res.json(category);
 }
 module.exports = {
     createCategory: createCategory,

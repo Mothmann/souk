@@ -2,17 +2,21 @@ import {createRouter, createWebHistory} from 'vue-router';
 
 import Category from './components/Category/Category.vue';
 import Index from './components/index.vue';
-import CRUD from './components/crud.vue';
-import register from './components/auth/register.vue'
+import register from './components/auth/register.vue';
+import login from './components/auth/login.vue';
+import logout from './components/auth/logout.vue';
+import Product from './components/product/Product.vue';
 
 
 const router = createRouter({
     history: createWebHistory(),
     routes:[
         {path: '/category', component: Category},
-        {path : '/crud', component: CRUD},
         {path: '/', component: Index},
         {path: '/register', component: register},
+        {path: '/login', component: login},
+        {path: '/logout', component: logout},
+        {path: '/product', component: Product},
     ]
 });
 

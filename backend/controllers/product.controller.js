@@ -8,16 +8,16 @@ async function readProduct(req, res){
       res.json(product)
 }
 async function createProduct(req, res){
-    const { ID, name, description, UnitsinStock,PicturePath, price, categories } = req.body
+    const { ID, name, description, UnitsinStock,PicturePath, price, categoryID } = req.body
     const result = await prisma.product.create({
       data: {
-        ID: 3,
-        name: 'erfertfe',
-        description: 'rtertfertfe',
-        PicturePath: 'tgetetg',
-        UnitsinStock: 500,
-        price: 100,
-        categories: {create:  [{ categoryID: 1}, {categoryID: 2}]  },
+        ID,
+        name,
+        description,
+        PicturePath,
+        UnitsinStock,
+        price,
+        categories: {create:  [{categoryID}, {categoryID}] },
       },
     })
     console.log(result);
@@ -27,26 +27,31 @@ async function updateProduct(req, res){
     const { id } = req.params
     const product = await prisma.product.update({
       where: { ID: Number(id) },
-      data: {name: 'idk',
-      categories: {deleteMany: {}, create: [{categoryID: 3}, {categoryID: 4}]}
+      data: {name: req.body.name,
+        description: req.body.description,
+        PicturePath: req.body.PicturePath,
+        UnitsinStock: req.body.UnitsinStock,
+        price: req.body.price,
+      categories: {deleteMany: {}, create: [{categoryID: req.body.categoryID}, {categoryID: req.body.categoryID}]}
     },
     })
     res.json(product)
 }
-async function deleteProduct(){
+async function deleteProduct(req, res){
     const { id } = req.params
-    const deleteCategories = prisma.categoriesOnProducts.deleteMany({
+    const deleteCategories = await prisma.product.update({
+      where: { ID: Number(id) },
+      data: {
+      categories: {deleteMany: {}}
+    },
+    });
+    res.json(deleteCategories);
+    const deleteProduct = await prisma.product.delete({
       where: {
-        productID: Number(id),
+        ID: Number(id),
       },
     })
-    
-    const deleteProduct = prisma.product.delete({
-      where: {
-        ID: Number(3),
-      },
-    })
-    res.json(deleteCategories, deleteProduct)
+      res.json(deleteProduct);
 }
 module.exports = {
     createProduct: createProduct,

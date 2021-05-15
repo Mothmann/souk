@@ -1,24 +1,24 @@
 <template>
   <li>
-                <div>
-                    <label>{{categoryId}}</label>
-                    </div>
-                    <div>
-                    <label>{{categoryName}}</label>
-                    </div>
-                    <div>
-                    <label>{{categoryDescription}}</label>
-                    </div>
-                
-                <form @submit.prevent="updateCategory(categoryId)">
-                    <label for="categoryId">Name</label>
-                    <input type="text" v-model="Name" />
-                    <label for="categoryId">Description</label>
-                    <input type="text" v-model="Description" />
-                    <button type="submit">Edit category</button>
-                </form> 
-                <button @click="deleteCategory(categoryId)" type="submit">Delete Category</button>
-            </li>
+        <div class="results">
+            <table>
+                <div class="table">
+                    <th><label>{{categoryId}}</label></th>
+                    <th><label>{{categoryName}}</label></th>
+                    <th><label>{{categoryDescription}}</label></th>
+                </div>
+            </table>
+        </div>
+        <form class="update" @submit.prevent="updateCategory(categoryId)">
+            <label for="categoryId">Name</label>
+            <input type="text" v-model="Name" />
+            <label for="categoryId">Description</label>
+            <input type="text" v-model="Description" />
+            <button class="btn" type="submit">Edit category</button>
+            <button class="delete" @click="deleteCategory(categoryId)" type="submit">Delete Category</button>
+        </form> 
+        
+    </li>
 </template>
 
 <script>

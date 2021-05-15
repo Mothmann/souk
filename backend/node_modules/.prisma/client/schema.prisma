@@ -14,18 +14,6 @@ model category {
   products    CategoriesOnProducts[]
 }
 
-model orders {
-  ID               Int      @id
-  Shipping_Address String   @db.VarChar(255)
-  Shipping_Date    DateTime @db.Date
-  product          product  @relation(fields: [ProductID], references: [ID])
-  ProductID        Int
-  user             user?    @relation(fields: [userID], references: [ID])
-  userID           Int
-
-  @@index([ProductID], name: "ProductID")
-  @@index([userID], name: "userID")
-}
 
 model product {
   ID           Int        @id
@@ -35,7 +23,6 @@ model product {
   UnitsinStock Int
   PicturePath  String     @db.VarChar(255)
   categories   CategoriesOnProducts[]
-  orders       orders[]
 }
 model CategoriesOnProducts {
   product     product     @relation(fields: [productID], references: [ID])
@@ -50,5 +37,4 @@ model user {
   ID       Int      @id @default(autoincrement())
   username String   @db.VarChar(20)
   password String   @db.VarChar(255)
-  orders   orders[]
 }

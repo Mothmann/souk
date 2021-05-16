@@ -5,6 +5,7 @@
         <router-link class="link" to="/register" tag="button">Register</router-link>
         <router-link class="link" to="/login" tag="button">Login</router-link>
         <router-link id="active" class="link"  to="/category" tag="button">Categories</router-link>
+        <router-link class="link"  to="/product" tag="button">Products</router-link>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>

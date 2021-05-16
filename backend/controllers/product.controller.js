@@ -8,7 +8,15 @@ async function readProduct(req, res){
       res.json(product)
 }
 async function createProduct(req, res){
-    const { ID, name, description, UnitsinStock,PicturePath, price, categoryID } = req.body
+    const { ID, name, description, UnitsinStock,PicturePath, price, categories } = req.body
+
+    console.log(req.body);
+    categoriesToBeSent = categories.map(ID => {
+       return {
+        categoryID: ID
+      }
+    });
+    console.log(categoriesToBeSent);
     const result = await prisma.product.create({
       data: {
         ID,
@@ -17,22 +25,29 @@ async function createProduct(req, res){
         PicturePath,
         UnitsinStock,
         price,
-        categories: {create:  [{categoryID}, {categoryID}] },
+        categories: {create: categoriesToBeSent}
       },
     })
     console.log(result);
-    res.json(result)
-}
+    res.json(result);
+  }
 async function updateProduct(req, res){
-    const { id } = req.params
+  const { name, description, UnitsinStock,PicturePath, price, categories } = req.body
+    const { id } = req.params;
+    categoriesToBeSent = categories.map(ID => {
+      return {
+       categoryID: ID
+     }
+   });
     const product = await prisma.product.update({
       where: { ID: Number(id) },
-      data: {name: req.body.name,
-        description: req.body.description,
-        PicturePath: req.body.PicturePath,
-        UnitsinStock: req.body.UnitsinStock,
-        price: req.body.price,
-      categories: {deleteMany: {}, create: [{categoryID: req.body.categoryID}, {categoryID: req.body.categoryID}]}
+      data: {
+        name,
+        description,
+        PicturePath,
+        UnitsinStock,
+        price,
+      categories: {deleteMany: {}, create: categoriesToBeSent}
     },
     })
     res.json(product)

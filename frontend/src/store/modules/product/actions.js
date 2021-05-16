@@ -1,6 +1,6 @@
 export default {
     async addProduct(context, payload) {
-
+        
         const product = {
             ID: parseInt(payload.productId),
             name: payload.productName,
@@ -8,6 +8,7 @@ export default {
             UnitsinStock: parseInt(payload.productUnitsinstock),
             PicturePath: payload.productPicturePath,
             price: parseInt(payload.productPrice),
+            categories: parseInt(payload.productCategories),
         };
         console.log(JSON.stringify(product));
         
@@ -35,10 +36,11 @@ export default {
                 productUnitsinstock: responseData[key].UnitsinStock,
                 productPicturePath: responseData[key].PicturePath,
                 productPrice: responseData[key].price,
+                productCategories: responseData[key].categories,
             }
+            console.log(product)
             products.push(product);
         }
-        console.log(products)
         context.commit('setProducts',products);
     },
     async updateProduct(context, payload) {
@@ -49,6 +51,7 @@ export default {
             UnitsinStock: parseInt(payload.productUnitsinstock),
             PicturePath: payload.productPicturePath,
             price: parseInt(payload.productPrice),
+            categories: payload.productCategories,
         };
         console.log(JSON.stringify(product));
 
@@ -70,6 +73,7 @@ export default {
             UnitsinStock: parseInt(payload.productUnitsinstock),
             PicturePath: payload.productPicturePath,
             price: parseInt(payload.productPrice),
+            categories: payload.productCategories,
         };
         console.log(JSON.stringify(product));
         const response = await fetch(`http://localhost:3000/product/delete/${product.ID}`,{

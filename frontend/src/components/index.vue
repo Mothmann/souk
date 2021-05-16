@@ -5,6 +5,7 @@
         <router-link class="link" to="/register" tag="button">Register</router-link>
         <router-link class="link" to="/login" tag="button">Login</router-link>
         <router-link class="link"  to="/category" tag="button">Categories</router-link>
+        <router-link class="link"  to="/product" tag="button">Products</router-link>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
@@ -104,8 +105,36 @@
 
 </body>
 </template>
+<script>
+export default{
+  data(){
+  return {
+      productId: null,
+      productName: '',
+      productDescription: '',
+      productUnitsinStock: null,
+      productPicturePath: '',        
+      productPrice: null,
+      productCategories: [],
+  };
 
-<style >
+},
+  created() {
+    this.fetchProducts();
+  },
+  computed: {
+        fetchedProducts() {
+            return this.$store.getters['product/products'];
+        },
+    },
+  methods : {
+    fetchProducts() {
+            this.$store.dispatch('product/fetchProducts');
+        }
+  }
+}
+</script>
+<style>
 .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;

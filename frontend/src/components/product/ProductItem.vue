@@ -8,10 +8,16 @@
         <label>{{productDescription}}</label>
     </div>
     <div>
-        <label>{{productUnitsinStock}}</label>
+        <label>{{productUnitsinstock}}</label>
+    </div>
+    <div>
+        <label>{{productPicturePath}}</label>
     </div>
     <div>
         <label>{{productPrice}}</label>
+    </div>
+    <div>
+        <label>{{productCategories}}</label>
     </div>
     <form @submit.prevent="updateProduct(productId)">
                     <label for="productId">Name</label>
@@ -32,7 +38,7 @@
 
 <script>
 export default {
-    props: ['productId', 'productName', 'productDescription', 'productUnitsinStock', 'productPicturePath', 'produtctPrice'],
+    props: ['productId', 'productName', 'productDescription', 'productUnitsinstock', 'productPicturePath', 'productPrice', 'productCategories'],
     data() {
         return {
             Id: '',
@@ -41,20 +47,21 @@ export default {
             UnitsinStock: '',
             PicturePath: '',
             Price:'',
+            categories: [],
         };
     },
     methods: {
         updateProduct(ID){
             console.log(ID);
             this.$store.dispatch('product/updateProduct', {
-                            productId: null,
-            productName: ID,
-            productDescription: this.Name,
-            productUnitsinStock: this.Description,
+            productId: ID,
+            productName: this.Name,
+            productDescription: this.Description,
+            productUnitsinStock: this.UnitsinStock,
             productPicturePath: this.PicturePath,
             productPrice: this.Price,
             });  
-            location.reload();
+            //location.reload();
         },
         deleteProduct(ID){
             console.log(ID);

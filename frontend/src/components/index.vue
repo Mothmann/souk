@@ -13,26 +13,11 @@
     <div class="arrivals">
         <h1>New Arrivals</h1>
     </div>
-    <div class="shop">
-            <div class="buy-1">
-                <img src="../../public/images/buy-1.jpg" alt="">
-                <h4>T-Shirts</h4>
-                <p>$50.00</p>
-                <p><button class="add">Add To Cart</button></p>
-            </div>
-            <div class="buy-2">
-                <img src="../../public/images/buy-2.jpg" alt="">
-                <h4>Shoes</h4>
-                <p>$150.00</p>
-                <p><button class="add">Add To Cart</button></p>
-            </div>
-            <div class="buy-3">
-                <img src="../../public/images/buy-3.jpg" alt="">
-                <h4>Sweatpants</h4>
-                <p>$25.00</p>
-                <p><button class="add">Add To Cart</button></p>
-            </div>
-        </div>
+            <fetch-products v-for="product in fetchedProducts" 
+            :key="product.productId" 
+            :productName="product.productName"
+            :productPicturePath="product.productPicturePath" 
+            :productPrice="product.productPrice"/>
                   <div class="section group">
             <div class="col span_1_of_3">
                 <i class="fa fa-car"></i>
@@ -106,7 +91,11 @@
 </body>
 </template>
 <script>
+import fetchProducts from '../components/product/fetchProducts';
 export default{
+     components: {
+       fetchProducts,
+    },
   data(){
   return {
       productId: null,
@@ -270,6 +259,8 @@ export default{
 @media only screen and (max-width: 480px) {
 	.col {  margin: 1% 0 1% 0%; }
 	.span_3_of_3, .span_2_of_3, .span_1_of_3 { width: 100%; }
+  .items {flex-direction: column;}
+  .items button {width: 120%;}
 
 }
 
@@ -385,10 +376,6 @@ export default{
       height: 8px;
       margin: 6px;
     }
-    .buy-1, .buy-2, .buy-3 {
-        margin-right: 1%;
-        width: 50%;
-}
   }
   
   @media (max-width: 420px){
@@ -423,18 +410,6 @@ export default{
   font-size: xx-large;
   margin-top: 5%;
   font-size: 40px;
-}
-.shop{
-  display: flex;
-  justify-content: space-evenly;
-  grid-template-columns: repeat(3 , 15%);
-  align-content: center;
-  margin-bottom: 3%;
-  padding-top: 3%;
-  padding-bottom: 2%;
-  color: white;
-  margin-left: 2%;
-  margin-right: 2%;
 }
 .add{
     padding: 0.5rem 1rem;

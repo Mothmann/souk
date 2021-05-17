@@ -37,19 +37,15 @@ export default {
             },
             method: 'POST',
             body: JSON.stringify(user),
-        }).then(response => {
-            if (response.status === 200){
-                localStorage.setItem('user', JSON.stringify(response.data));
-                //self.$router.push('/');
-                window.location.replace("http://localhost:8080");
-            }
-            else {
-                alert('incorrect username or password');
-            }
-
-            return response.data;
-        });
-        console.log(response);
+        })
+        if (response.ok) {
+            console.log('good');
+            localStorage.setItem('user', user.username);
+            window.location.replace("http://localhost:8080");
+        }
+        else {
+            alert('incorrect username or password');
+        }
     },  
     async logout(){
         localStorage.removeItem('user');

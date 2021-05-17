@@ -17,7 +17,7 @@
             :productId="product.productId"
             :productName="product.productName"
             :productDescription="product.productDescription"
-            :productUnitsinstock="product.productUnitsinstock" 
+            :productUnitsinStock="product.productUnitsinStock" 
             :productPicturePath="product.productPicturePath" 
             :productPrice="product.productPrice"
             :productCategories="product.productCategories"/>
@@ -30,14 +30,14 @@
             <input type="text" v-model="productName"/>
             <label for="productId">Description</label>
             <input type="text" v-model="productDescription"/>
-            <label for="productId">UnitsinStock</label>
-            <input type="number" v-model="UnitsinStock" />
+            <label for="productId">Unitsinstock</label>
+            <input type="number" v-model="productUnitsinStock"/>
             <label for="productId">PicturePath</label>
-            <input type="text" v-model="PicturePath	"/>  
+            <input type="text" v-model="productPicturePath"/>  
             <label for="productId">Price</label>
-            <input type="number" v-model="Price"/>
+            <input type="number" v-model="productPrice"/>
              <label for="productId">Categories</label>
-            <input type="number" v-model="Categories"/>
+            <input type="text" v-model="productCategories"/>
             <button type="submit">Add product</button>
         </form>   
     </div>
@@ -56,7 +56,7 @@ export default{
             productUnitsinStock: null,
             productPicturePath: '',
             productPrice: null,
-            productCategories: [],
+            productCategories: null,
         };
     },
     created() {
@@ -75,9 +75,11 @@ export default{
                 productDescription: this.productDescription,
                 productUnitsinStock: this.productUnitsinStock,
                 productPicturePath: this.productPicturePath,
-                productPrice: this.price,
+                productPrice: this.productPrice,
+                productCategories: this.productCategories,
+
             });
-            //location.reload();
+            location.reload();
         },
         fetchProducts() {
             this.$store.dispatch('product/fetchProducts');

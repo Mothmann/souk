@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3307
--- Generation Time: Apr 28, 2021 at 12:20 PM
--- Server version: 8.0.23
--- PHP Version: 8.0.3
+-- Host: 127.0.0.1
+-- Generation Time: May 17, 2021 at 02:11 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,8 +18,27 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `database`
+-- Database: `souk`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categoriesonproducts`
+--
+
+CREATE TABLE `categoriesonproducts` (
+  `productID` int(11) NOT NULL,
+  `categoryID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categoriesonproducts`
+--
+
+INSERT INTO `categoriesonproducts` (`productID`, `categoryID`) VALUES
+(2, 1),
+(2, 2);
 
 -- --------------------------------------------------------
 
@@ -28,40 +47,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `category` (
-  `ID` int NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `description` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `ID` int(11) NOT NULL,
+  `name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`ID`, `name`, `description`) VALUES
-(1, 'electronique', 'PC, television, telephone...'),
-(2, 'jeux videos', 'PS4,xbox one,steam...');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `orders`
---
-
-CREATE TABLE `orders` (
-  `ID` int NOT NULL,
-  `ProductID` int NOT NULL,
-  `userID` int NOT NULL,
-  `Shipping_Address` varchar(255) NOT NULL,
-  `Shipping_Date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`ID`, `ProductID`, `userID`, `Shipping_Address`, `Shipping_Date`) VALUES
-(1, 1, 2, '118, Rue Lieutenent Mahroud Mohamed, Grand Casablanca', '2021-05-20'),
-(2, 2, 2, '51, Rue AL KHOUZAM Beauséjour, Grand Casablanca', '2021-04-13');
+(1, 'cccccc', 'ccccccccc'),
+(2, 'jeux videos', 'tgttttttttttttttttt'),
+(3, 'electronique', 'ujjjjjjjjjjjt');
 
 -- --------------------------------------------------------
 
@@ -70,22 +68,22 @@ INSERT INTO `orders` (`ID`, `ProductID`, `userID`, `Shipping_Address`, `Shipping
 --
 
 CREATE TABLE `product` (
-  `ID` int NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `price` int NOT NULL,
-  `categoryID` int NOT NULL,
-  `UnitsinStock` int NOT NULL,
-  `PicturePath` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `ID` int(11) NOT NULL,
+  `name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `UnitsinStock` int(11) NOT NULL,
+  `PicturePath` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`ID`, `name`, `description`, `price`, `categoryID`, `UnitsinStock`, `PicturePath`) VALUES
-(1, 'DELL Vostro 5471', 'Dell Vostro 5471 est un ordinateur portable Windows 10 Home avec un écran de 14,00 pouces qui a une résolution de 1920 x 1080 pixels. Il est alimenté par un processeur Core i5 et il est livré avec 8 Go de RAM. Les graphiques sont alimentés par AMD Radeon ', 0, 1, 50, ''),
-(2, 'GTA V', 'Grand Theft Auto V est un jeu d\'action-aventure joué à la troisième personne ou à la première personne. Les joueurs accomplissent des missions - des scénarios linéaires avec des objectifs fixés - pour progresser dans l\'histoire. En dehors des missions, le', 0, 2, 100, '');
+INSERT INTO `product` (`ID`, `name`, `description`, `UnitsinStock`, `PicturePath`, `price`) VALUES
+(1, 'PS5', 'some info', 100, 'https://blog.playstation.com/tachyon/2021/04/51111308992_bb62e2ccaf_k.jpg?resize=1088,612&crop_strategy=smart&zoom=1', 5000),
+(2, 'elitebook 8470p', 'test', 500, 'https://images-na.ssl-images-amazon.com/images/I/41v-W4RbeNL._AC_SY780_.jpg', 9999),
+(3, 'Sony xperia XZ', 'test', 50, 'https://drop.ndtv.com/TECH/product_database/images/91201655026PM_635_sony_xperia_xz.jpeg', 800);
 
 -- --------------------------------------------------------
 
@@ -94,23 +92,56 @@ INSERT INTO `product` (`ID`, `name`, `description`, `price`, `categoryID`, `Unit
 --
 
 CREATE TABLE `user` (
-  `ID` int NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `role` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `ID` int(11) NOT NULL,
+  `username` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`ID`, `username`, `password`, `role`) VALUES
-(1, 'admin', 'qwerty', 'admin'),
-(2, 'client', 'qwerty', 'client');
+INSERT INTO `user` (`ID`, `username`, `password`) VALUES
+(1, 'root', '$2a$10$Dyjm1t5MosVdF9T0DXGX5.JhhVOpiUJmy.Xoq3QP.YTVYaGZz6vvu'),
+(2, 'aziz', '$2a$10$NSA.mhynjknQ26j11DnNPOb2KIiscJh8ex988xxTAPh/p1HzENCHq');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `_prisma_migrations`
+--
+
+CREATE TABLE `_prisma_migrations` (
+  `id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `checksum` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `finished_at` datetime(3) DEFAULT NULL,
+  `migration_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `logs` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rolled_back_at` datetime(3) DEFAULT NULL,
+  `started_at` datetime(3) NOT NULL DEFAULT current_timestamp(3),
+  `applied_steps_count` int(10) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `_prisma_migrations`
+--
+
+INSERT INTO `_prisma_migrations` (`id`, `checksum`, `finished_at`, `migration_name`, `logs`, `rolled_back_at`, `started_at`, `applied_steps_count`) VALUES
+('17222e93-d299-45c5-8f7e-7b7e0a430b9e', 'db749f5eaf1340d86a6887149835691697ddb8865f044ecb59bac31a832b45', '2021-05-15 22:58:25.694', '20210515225824_', NULL, NULL, '2021-05-15 22:58:24.364', 1),
+('2cb7d887-f5a2-4d2c-8c1b-ff94c28acc44', '1ebd57a110586a419848eba3847762191bf4d97ef743127c5df6b6d911d26', '2021-05-15 23:03:14.714', '20210515230310_', NULL, NULL, '2021-05-15 23:03:10.592', 1),
+('c84d479e-e157-4edc-8948-29653a02113a', 'dfe6df805eeaf5c866c7d8d5ddddf8eab5452bdfecf4eab1c5b32b1167', '2021-05-14 23:32:35.494', '20210429082204_souk', NULL, NULL, '2021-05-14 23:32:22.904', 1),
+('d9ed0a56-9b65-45c7-838b-44ccdc9a6953', '8ab6a7d85b341ff81268c074d681583befe81de491d2f0892c9eb648ca4615b6', '2021-05-14 23:32:36.444', '20210429084615_souk1', NULL, NULL, '2021-05-14 23:32:35.586', 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `categoriesonproducts`
+--
+ALTER TABLE `categoriesonproducts`
+  ADD PRIMARY KEY (`productID`,`categoryID`),
+  ADD KEY `categoryID` (`categoryID`);
 
 --
 -- Indexes for table `category`
@@ -119,19 +150,10 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ProductID` (`ProductID`),
-  ADD KEY `userID` (`userID`);
-
---
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `categoryID` (`categoryID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `user`
@@ -140,21 +162,31 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `_prisma_migrations`
+--
+ALTER TABLE `_prisma_migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `orders`
+-- Constraints for table `categoriesonproducts`
 --
-ALTER TABLE `orders`
-  ADD CONSTRAINT `ProductID` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ID`),
-  ADD CONSTRAINT `userID` FOREIGN KEY (`userID`) REFERENCES `user` (`ID`);
-
---
--- Constraints for table `product`
---
-ALTER TABLE `product`
-  ADD CONSTRAINT `categoryID` FOREIGN KEY (`categoryID`) REFERENCES `category` (`ID`);
+ALTER TABLE `categoriesonproducts`
+  ADD CONSTRAINT `categoriesonproducts_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `product` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `categoriesonproducts_ibfk_2` FOREIGN KEY (`categoryID`) REFERENCES `category` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

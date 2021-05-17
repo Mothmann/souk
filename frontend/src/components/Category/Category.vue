@@ -100,7 +100,7 @@ export default {
         return {
             categoryId: null,
             categoryName: '',
-              categoryDescription:'',
+            categoryDescription:'',
         };
     },
     created() {

@@ -9,11 +9,11 @@ async function readProduct(req, res){
 }
 async function createProduct(req, res){
     const { ID, name, description, UnitsinStock,PicturePath, price, categories } = req.body
-
     console.log(req.body);
+
     categoriesToBeSent = categories.map(ID => {
        return {
-        categoryID: ID
+        categoryID: parseInt(ID)
       }
     });
     console.log(categoriesToBeSent);
@@ -36,10 +36,11 @@ async function updateProduct(req, res){
     const { id } = req.params;
     categoriesToBeSent = categories.map(ID => {
       return {
-       categoryID: ID
+       categoryID: parseInt(ID)
      }
    });
-    const product = await prisma.product.update({
+   console.log(categoriesToBeSent);
+    const result = await prisma.product.update({
       where: { ID: Number(id) },
       data: {
         name,
@@ -50,7 +51,8 @@ async function updateProduct(req, res){
       categories: {deleteMany: {}, create: categoriesToBeSent}
     },
     })
-    res.json(product)
+    console.log(result);
+    res.json(result);
 }
 async function deleteProduct(req, res){
     const { id } = req.params

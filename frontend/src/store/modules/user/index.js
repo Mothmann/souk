@@ -6,7 +6,8 @@ export default {
     namespaced: true,
     state() {
         return {
-            users:[],
+            username: null,
+            isAuth: null,
         };
     },
     actions,

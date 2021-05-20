@@ -39,7 +39,6 @@ export default {
             body: JSON.stringify(user),
         })
         if (response.ok) {
-            console.log('good');
             localStorage.setItem('user', user.username);
             window.location.replace("http://localhost:8080");
         }

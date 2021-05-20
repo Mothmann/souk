@@ -1,5 +1,8 @@
 export default {
-    users(state) {
-        return state.users;
-    }
-};
+    username(state) {
+        return state.username;
+    },
+    isAuth(state) {
+        return state.isAuth;
+    },
+};  

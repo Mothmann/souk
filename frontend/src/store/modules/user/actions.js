@@ -19,6 +19,7 @@ export default {
             }
             else {
                 alert('registration successful');
+                window.location.replace("http://localhost:8080/login");
             }
         })
         console.log(response);

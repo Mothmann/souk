@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2021 at 02:11 AM
+-- Generation Time: May 21, 2021 at 11:42 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -37,8 +37,14 @@ CREATE TABLE `categoriesonproducts` (
 --
 
 INSERT INTO `categoriesonproducts` (`productID`, `categoryID`) VALUES
-(2, 1),
-(2, 2);
+(1, 2),
+(1, 5),
+(2, 3),
+(2, 5),
+(3, 1),
+(3, 5),
+(4, 4),
+(4, 5);
 
 -- --------------------------------------------------------
 
@@ -57,9 +63,11 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`ID`, `name`, `description`) VALUES
-(1, 'cccccc', 'ccccccccc'),
-(2, 'jeux videos', 'tgttttttttttttttttt'),
-(3, 'electronique', 'ujjjjjjjjjjjt');
+(1, 'telephone', 'some info'),
+(2, 'jeux videos', 'some info'),
+(3, 'ordinateur', 'some info'),
+(4, 'smart speakers', 'some info'),
+(5, 'electronique', 'some info');
 
 -- --------------------------------------------------------
 
@@ -83,7 +91,8 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`ID`, `name`, `description`, `UnitsinStock`, `PicturePath`, `price`) VALUES
 (1, 'PS5', 'some info', 100, 'https://blog.playstation.com/tachyon/2021/04/51111308992_bb62e2ccaf_k.jpg?resize=1088,612&crop_strategy=smart&zoom=1', 5000),
 (2, 'elitebook 8470p', 'test', 500, 'https://images-na.ssl-images-amazon.com/images/I/41v-W4RbeNL._AC_SY780_.jpg', 9999),
-(3, 'Sony xperia XZ', 'test', 50, 'https://drop.ndtv.com/TECH/product_database/images/91201655026PM_635_sony_xperia_xz.jpeg', 800);
+(3, 'Sony xperia XZ', 'test', 50, 'https://drop.ndtv.com/TECH/product_database/images/91201655026PM_635_sony_xperia_xz.jpeg', 800),
+(4, 'google home', 'some info', 200, 'http://mobileimages.lowes.com/product/converted/811571/811571018420.jpg', 500);
 
 -- --------------------------------------------------------
 
@@ -96,14 +105,6 @@ CREATE TABLE `user` (
   `username` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`ID`, `username`, `password`) VALUES
-(1, 'root', '$2a$10$Dyjm1t5MosVdF9T0DXGX5.JhhVOpiUJmy.Xoq3QP.YTVYaGZz6vvu'),
-(2, 'aziz', '$2a$10$NSA.mhynjknQ26j11DnNPOb2KIiscJh8ex988xxTAPh/p1HzENCHq');
 
 -- --------------------------------------------------------
 
@@ -175,7 +176,7 @@ ALTER TABLE `_prisma_migrations`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

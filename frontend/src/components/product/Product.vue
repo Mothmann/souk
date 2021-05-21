@@ -2,7 +2,6 @@
     <div>
         <div class="topnav" id="myTopnav">
             <router-link class="link" to="/" tag="button">Home</router-link>
-            <router-link class="link" to="/register" tag="button">Register</router-link>
             <router-link class="link" to="/logout" tag="button">Logout</router-link>
             <router-link class="link"  to="/category" tag="button">Categories</router-link>
             <router-link id="active" class="link"  to="/product" tag="button">Products</router-link>

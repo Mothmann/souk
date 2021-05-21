@@ -24,6 +24,10 @@ router.afterEach(() => {
         window.location.replace("http://localhost:8080/login");
         alert('please sign in or press register');
       }
+    else if (localStorage.getItem('user') != null && window.location.href === 'http://localhost:8080/register') {
+        window.location.replace("http://localhost:8080");
+        alert('you are already signed in');
+    }
 })
 export default router;
 

@@ -1,61 +1,58 @@
 <template>
 <li>
+    <div class="test">
+        <label class="test">{{productId}}</label></div>
     <div>
-        <label>{{productId}}</label></div>
-    <div>
-        <label>{{productName}}</label></div>    
-    <div>
-        <label>{{productDescription}}</label>
+        <label class="test">{{productName}}</label></div>    
+    <div class="test">
+        <label class="test">{{productDescription}}</label>
     </div>
-    <div>
-        <label>{{productUnitsinStock}}</label>
+    <div class="test">
+        <label class="test">{{productUnitsinstock}}</label>
     </div>
-    <div>
+    <div class="test">
         <img :src="productPicturePath" style="max-width: 25%">
     </div>
-    <div>
-        <label>{{productPrice}}</label>
+    <div class="test">
+        <label class="test">{{productPrice}}</label>
     </div>
-    <div>
-        <label for="">Cateogory: </label>
-        <label v-for="productCategory in productCategories"
-        :key="productCategory.productId" >{{productCategory.categoryID}}</label>
+    <div class="test">
+        <label class="test">{{productCategories}}</label>
     </div>
-    <form @submit.prevent="updateProduct(productId)">
-        <label for="productId">Name</label>
-        <input type="text" v-model="Name"/>
-        <label for="productId">Description</label>
-        <input type="text" v-model="Description"/>
-        <label for="productId">UnitsinStock</label>
-        <input type="text" v-model="UnitsinStock"/>
-        <label for="productId">PicturePath</label>
-        <input type="text" v-model="PicturePath	"/>  
-        <label for="productId">Price</label>
-        <input type="text" v-model="Price"/>
-        <label for="productId">Categories</label>
-        <input type="text" v-model="Categories"/>
-        <button type="submit">Edit Product</button>
+    <form class="form" @submit.prevent="updateProduct(productId)">
+            <label for="productId">Name</label>
+            <input type="text" v-model="Name" />
+            <label for="productId">Description</label>
+            <input type="text" v-model="Description"/>
+            <label for="productId">UnitsinStock</label>
+            <input type="text" v-model="UnitsinStock"/>
+            <label for="productId">PicturePath</label>
+            <input type="text" v-model="PicturePath	"/>  
+            <label for="productId">Price</label>
+            <input type="text" v-model="Price"/>
+            <button type="submit">Edit Product</button>
     </form> 
-        <button @click="deleteProduct(productId)" type="submit">Delete Product</button>
+            <button @click="deleteProduct(productId)" type="submit">Delete Product</button>
 </li>
 </template>
 
 <script>
 export default {
-    props: ['productId', 'productName', 'productDescription', 'productUnitsinStock', 'productPicturePath', 'productPrice', 'productCategories'],
+    props: ['productId', 'productName', 'productDescription', 'productUnitsinstock', 'productPicturePath', 'productPrice', 'productCategories'],
     data() {
         return {
-            Id: null,
+            Id: '',
             Name: '',
             Description: '',
-            UnitsinStock: null,
+            UnitsinStock: '',
             PicturePath: '',
-            Price: null,
-            Categories: null,
+            Price:'',
+            categories: [],
         };
     },
     methods: {
         updateProduct(ID){
+            console.log(ID);
             this.$store.dispatch('product/updateProduct', {
             productId: ID,
             productName: this.Name,
@@ -63,7 +60,6 @@ export default {
             productUnitsinStock: this.UnitsinStock,
             productPicturePath: this.PicturePath,
             productPrice: this.Price,
-            productCategories: this.Categories,
             });  
             //location.reload();
         },
@@ -77,3 +73,41 @@ export default {
     }
 }
 </script>
+<style>
+
+.test{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    list-style: none;
+}
+label .test{  
+    border: 2px solid white;
+}
+
+</style>
+<style scoped>
+li{
+    width: 80%;
+}
+input{
+    margin-bottom: 2%;
+    width: 75%;
+}
+label{
+    margin-bottom: 2%;
+    font-size: 1.3rem;
+}
+</style>
+<style scoped>
+form.form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+</style>

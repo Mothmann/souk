@@ -35,7 +35,7 @@
             <input type="text" v-model="productPicturePath"/>  
             <label for="productId">Price</label>
             <input type="number" v-model="productPrice"/>
-             <label for="productId">Categories</label>
+            <label for="productId">Categories</label>
             <input type="text" v-model="productCategories"/>
             <button type="submit">Add product</button>
         </form>   

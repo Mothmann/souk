@@ -48,6 +48,7 @@ export default {
         context.commit('setProducts',products);
     },
     async updateProduct(context, payload) {
+        console.log(payload.productCategories);
         var results = payload.productCategories.split(',');
         var categoriesArray = results.map(result => {
             return result;
@@ -62,7 +63,6 @@ export default {
             price: parseInt(payload.productPrice),
             categories : categoriesArray
         };
-        console.log('q',product);
         const response = await fetch(`http://localhost:3000/product/update/${product.ID}`,{
             headers: {
                 'Accept': 'application/json',
@@ -96,7 +96,7 @@ export default {
             throw error;
         }
         
-        const index = context.state.tweets.findIndex(product => product.id === productId);
+        const index = context.state.product.findIndex(product => product.id === productId);
         context.commit('deleteProduct',index);
     }
 

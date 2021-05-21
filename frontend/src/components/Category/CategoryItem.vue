@@ -46,7 +46,9 @@ export default {
             this.$store.dispatch('category/deleteCategory', {
                 categoryId: ID,
             });
-            location.reload();
+            setTimeout(function(){
+                window.location.reload(1);
+                }, 2000);
         },
        
 }}

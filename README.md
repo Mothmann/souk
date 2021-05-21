@@ -1,6 +1,3 @@
-to run this project you need first to:
-
-
 1.open a terminal and change the directory to back end.
 
 2.run **npx prisma migrate dev** to add all the tables...
